@@ -2,9 +2,20 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from rest_framework import routers
+
+import timespans.api
+
+router = routers.DefaultRouter()
+
+router.register(
+    'timespans', timespans.api.TimespanViewSet, 'timespans' 
+)
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api/', include(router.urls)), 
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 if 'rosetta' in settings.INSTALLED_APPS:
