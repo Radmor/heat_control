@@ -23,17 +23,13 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.staticfiles',
 
-    # 'compressor',
-    # 'mailqueue',
-    # 'rosetta',
-    # 'widget_tweaks',
-    # 'stdimage',
-    # 'sendfile',
     'debug_toolbar',
     'registration',
+    'rest_framework',
 
     'heat_control',
     'auth_ex',
+    'schedule',
 )
 
 AUTH_USER_MODEL = 'auth_ex.User'
