@@ -16,4 +16,4 @@ class WeekScheduleItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WeekScheduleItem
-        fields = ('id', 'day_of_week', 'start_time', 'end_time')
+        fields = ('id', 'temperature', 'day_of_week', 'start_time', 'end_time')

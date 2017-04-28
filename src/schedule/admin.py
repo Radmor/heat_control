@@ -5,7 +5,7 @@ from .models import DateScheduleItem, WeekScheduleItem
 @admin.register(DateScheduleItem)
 class DateScheduleItemAdmin(admin.ModelAdmin):
     list_display = ('temperature', 'start', 'end')
-    
+
 
 @admin.register(WeekScheduleItem)
 class WeekScheduleItemAdmin(admin.ModelAdmin):

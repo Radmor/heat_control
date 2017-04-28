@@ -26,6 +26,7 @@ class DateScheduleItem(models.Model):
 
 
 class WeekScheduleItem(models.Model):
+    temperature = models.FloatField()
     day_of_week = models.CharField(max_length=16, choices=DAYS_OF_WEEK)
     start_time = models.TimeField()
     end_time = models.TimeField()
