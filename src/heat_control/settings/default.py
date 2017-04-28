@@ -29,7 +29,7 @@ INSTALLED_APPS = (
 
     'heat_control',
     'auth_ex',
-    'timespans',
+    'schedule',
 )
 
 AUTH_USER_MODEL = 'auth_ex.User'

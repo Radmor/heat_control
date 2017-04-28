@@ -4,12 +4,16 @@ from django.contrib import admin
 
 from rest_framework import routers
 
-import timespans.api
+import schedule.api
 
 router = routers.DefaultRouter()
 
 router.register(
-    'timespans', timespans.api.TimespanViewSet, 'timespans' 
+    'date_schedule', schedule.api.DateScheduleItemViewSet, 'date_schedule' 
+)
+
+router.register(
+    'week_schedule', schedule.api.WeekScheduleItemViewSet, 'week_schedule'
 )
 
 urlpatterns = [
