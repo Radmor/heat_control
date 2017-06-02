@@ -1,6 +1,7 @@
 from os import path
 from django.utils.translation import ugettext_lazy as _
 import environ
+from corsheaders.defaults import default_headers
 
 root = environ.Path(__file__) - 4
 env = environ.Env(DEBUG=(bool, False), )
@@ -26,6 +27,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'registration',
     'rest_framework',
+    'corsheaders',
 
     'heat_control',
     'auth_ex',
@@ -71,6 +73,7 @@ TEMPLATES = [
 ]
 
 MIDDLEWARE_CLASSES = (
+    'corsheaders.middleware.CorsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -171,3 +174,15 @@ INTERNAL_IPS = ['127.0.0.1']
 #     'propagate': True,
 #     'formatter': 'simple',
 # }
+
+BASE_MULTICASE_HTTP_HEADER = 'json-key-case'
+
+CORS_ALLOW_HEADERS = default_headers + (
+    BASE_MULTICASE_HTTP_HEADER,
+)
+CORS_ORIGIN_WHITELIST = ()
+
+MULTICASE_HTTP_HEADER = 'HTTP_{}'.format(
+    BASE_MULTICASE_HTTP_HEADER.upper().replace('-', '_')
+)
+CORS_ORIGIN_ALLOW_ALL = True

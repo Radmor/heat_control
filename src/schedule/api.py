@@ -8,18 +8,18 @@ from .serializers import DateScheduleItemSerializer, WeekScheduleItemSerializer
 
 class DateScheduleItemViewSet(viewsets.ModelViewSet):
     serializer_class = DateScheduleItemSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.AllowAny,)
     queryset = DateScheduleItem.objects.all()
 
 
 class WeekScheduleItemViewSet(viewsets.ModelViewSet):
     serializer_class = WeekScheduleItemSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.AllowAny,)
     queryset = WeekScheduleItem.objects.all()
 
 
 class TemperatureViewSet(views.APIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.AllowAny,)
 
     def get(self, request, format=None):
         now = timezone.now()
@@ -29,4 +29,3 @@ class TemperatureViewSet(views.APIView):
         if not schedule_item:
             return response.Response({'error':_('Object not found')}, status=status.HTTP_404_NOT_FOUND)
         return response.Response({'temperature': schedule_item.temperature})
-

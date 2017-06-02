@@ -4,6 +4,7 @@
 # django-stdimage
 psycopg2
 django-compressor
+django-cors-headers==2.0.2
 django-model-utils
 django-registration-redux
 djangorestframework
