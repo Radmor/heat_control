@@ -90,7 +90,7 @@ ROOT_URLCONF = 'heat_control.urls'
 WSGI_APPLICATION = 'heat_control.wsgi.application'
 
 USE_TZ = True
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Warsaw'
 
 # --- LANGUAGES ---
 USE_I18N = True

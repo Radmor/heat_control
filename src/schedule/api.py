@@ -1,8 +1,10 @@
+from datetime import datetime
+
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import viewsets, permissions, views, response, status
 
-from .models import DateScheduleItem, WeekScheduleItem
+from .models import DateScheduleItem, WeekScheduleItem, DAYS_OF_WEEK
 from .serializers import DateScheduleItemSerializer, WeekScheduleItemSerializer
 
 
@@ -25,7 +27,11 @@ class TemperatureViewSet(views.APIView):
         now = timezone.now()
         schedule_item = DateScheduleItem.objects.filter(start__lte=now, end__gte=now).first()
         if not schedule_item:
-            schedule_item = WeekScheduleItem.objects.filter(start_time__lte=now, end_time__gte=now).first()
+            schedule_item = WeekScheduleItem.objects.filter(
+                day_of_week=DAYS_OF_WEEK[timezone.datetime.today().weekday()][0],
+                start_time__lte=now.time(),
+                end_time__gte=now.time(),
+            ).first()
         if not schedule_item:
             return response.Response({'error':_('Object not found')}, status=status.HTTP_404_NOT_FOUND)
         return response.Response({'temperature': schedule_item.temperature})
